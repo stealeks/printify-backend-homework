@@ -66,7 +66,6 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
     'timezone' => 'UTC',
 
     /*
@@ -79,7 +78,6 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
     'locale' => 'en',
 
     /*
@@ -92,7 +90,6 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
     'fallback_locale' => 'en',
 
     /*
@@ -105,7 +102,6 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-
     'faker_locale' => 'en_US',
 
     /*
@@ -118,9 +114,7 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-
     'key' => env('APP_KEY'),
-
     'cipher' => 'AES-256-CBC',
 
     /*
@@ -135,7 +129,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -163,18 +156,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
-        /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -189,7 +174,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -225,7 +209,5 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
-
 ];
