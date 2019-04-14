@@ -47,6 +47,6 @@ Route::group([
             Route::post('create', 'OrdersController@create');
         });
 
-        Route::post('index/{product_type_id?}', 'OrdersController@index');
+        Route::get('index/{product_type_id?}', 'OrdersController@index');
     });
 });

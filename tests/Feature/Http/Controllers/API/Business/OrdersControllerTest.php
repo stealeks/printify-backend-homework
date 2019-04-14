@@ -339,7 +339,7 @@ class OrderControllerTest extends APITest
         ]);
         $twoShirtsOneMug->save();
 
-        $response = $this->postJson('/api/business/orders/index');
+        $response = $this->getJson('/api/business/orders/index');
 
         $response->assertSuccessful();
 
@@ -348,7 +348,7 @@ class OrderControllerTest extends APITest
         ]);
 
 
-        $response = $this->postJson('/api/business/orders/index/'.$mugType->id);
+        $response = $this->getJson('/api/business/orders/index/'.$mugType->id);
 
         $response->assertSuccessful();
 
