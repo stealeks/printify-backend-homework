@@ -1,28 +1,94 @@
-Create a tiny RESTful web service with the following business requirements:
+# Install
 
-## Application must expose REST API endpoints for the following functionality:
+0. Clone project
+0. composer install
+0. Copy `.env.example` to `.env`
+0. Configure via `.env`
+0. `/artisan key:generate`
+0. `./artisan migrate:refresh --seed`
+0. Launch via
+    0. `./artisan serve` or
+    0. Configure web server to `public` directory
+0. Configure `storage` directory permissions (writable by web server)
 
-* create product (price, productType, color, size)
-* calculate order price (Collection of products and quiantities)  (should also save Order draft somewhere)
-* list all Orders
-* list all Orders by productType
+## Tests
 
-## Service must perform operation validation according to the following rules and reject if:
+0. Copy `.env.example` to `.env.testing`
+0. Configure via `.env.testing`
+0. `composer test`
 
-* type + color + size already exists
-* Order is empty or total price is less then 10
-* N orders / second are received from a single country (essentially we want to limit number of orders coming from a country in * a given timeframe)
+# API
+###### (very bad documentation)
 
-Service must perform origin country resolution using a web service and store country code together with the order draft.
-Because network is unreliable and services tend to fail, let's agree on default country code - "US".
+## Auth
 
-## Technical requirements:
+0. Registration
+0. After Login there will be `token` in response
+0. Use `token` as `GET` parameter or `Authorization: Bearer {token}` header
 
-* You have total control over tools, as long as application is written in PHP and Laravel framework.
+## Endpoints
 
-## What gets evaluated:
+`POST` to `/api/auth/register` with 
+```json
+{
+  "name": "Harry",
+  "email": "harry@hogwarts.com",
+  "password": "min8CharacterLengthPassword"
+}
+```
+---
 
-* Conformance to business requirements
-* Code quality, including testability
-* How easy it is to run and deploy the service (don't make us install Oracle database please 😉
-* Good luck and have fun!
+`POST` to `/api/auth/login` with 
+```json
+{
+  "email": "harry@hogwarts.com",
+  "password": "min8CharacterLengthPassword"
+}
+```
+
+---
+`GET` to `/api/business/classificators/types`
+
+---
+`GET` to `/api/business/classificators/colors`
+
+---
+`GET` to `/api/business/classificators/sizes`
+
+---
+`POST` to `/api/business/products/create` with 
+```json
+{
+  "title": "Regular White Mug",
+  "price": "1.99",
+  "type_id": "{id from classificators API}",
+  "color_id": "{id from classificators API}",
+  "size_id": "{id from classificators API}"
+}
+```
+---
+
+`GET` to `/api/business/products/index`
+
+---
+`POST` to `/api/business/orders/create` with 
+```json
+{
+  "items": [
+    {
+      "product_id": "{product_id from products APIs}",
+      "quantity": 10
+    },
+    {
+      "product_id": "{another product_id from products APIs}",
+      "quantity": 50
+    }
+  ]
+}
+```
+
+---
+`GET` to `/api/business/orders/index`
+
+`GET` to `/api/business/orders/index/{id from classificators API}`
+
